@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head prefix="og: https://ogp.me/ns#">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta property="og:url" content="https://addon.pjeita.top" />
+    <meta property="og:type" content="product" />
+    <meta property="og:title" content="ヒマクエ アドオンページ" />
+    <meta
+      property="og:description"
+      content="HIMACHATQUESTのアドオンの導入・案内ページです。"
+    />
+    <meta property="og:site_name" content="ヒマクエアドオン Meteor" />
+    <meta
+      property="og:image"
+      content="https://addon.pjeita.top/picts/thumbnail.jpg"
+    />
+    <meta name="twitter:card" content="app" />
+    <meta name="twitter:site" content="@sgr_9661_ea" />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="/platform.js"></script>
+    <script>
+      function copy() {
+        const text =
+          "javascript:(()=>{if (document.getElementById('addonwindow')?.innerHTML) return;if(this.LoadedAddonPage)return $().append(2);layercount++;$(\"#layerroot\").append(`<div class='layer' id='layer${layercount}'><h2 class='sourcespace'>読み込み中</h2><button class='layerclosebtn' id='addonwindow' style='display:none' onclick='myremove(this.parentNode)'>×</button></div>`);fetch(\"https://addon.pjeita.top/code.js\",{cache:'no-store'}).then(n=>n.text()).then(n=>eval(n))})()";
+        navigator.clipboard.writeText(text);
+        document.getElementById("copyok").style.display = "";
+        setTimeout(
+          () => (document.getElementById("copyok").style.display = "none"),
+          3000
+        );
+      }
+      async function load() {
+        switch (platform.os.family) {
+          case "Windows":
+            document.getElementById("addonapp").innerHTML = '<h2>Meteor</h2><img id="icon" src="/picts/icon.png" /><br /><br /><a class="download" href="https://api.pjeita.top/download/Meteor/windows">ダウンロード</a><small>64bit Windows10/11対応</small>';
+            break;
+          case "OS X":
+            document.getElementById("addonapp").innerHTML = '<h2>Meteor</h2><img id="icon" src="/picts/icon.png" /><br /><br /><a class="download" href="https://api.pjeita.top/download/Meteor/mac">ダウンロード</a><small>64bit macOS 10.15(Catalina)〜macOS 14(Sonoma)対応</small>';
+            break;
+          case "Linux":
+            document.getElementById("addonapp").innerHTML = '<h2>Meteor</h2><img id="icon" src="/picts/icon.png" /><br /><br /><a class="download" href="https://api.pjeita.top/download/Meteor/linux">ダウンロード</a><small>64bit AppImage形式</small>';
+            break;
+          default:
+            document.getElementById(
+              "addonapp"
+            ).innerHTML = `<p>❌ 現在ご利用の環境には対応しておりません。</p>`;
+            break;
+        }
+      }
+    </script>
+    <title>ヒマクエ アドオンページー導入方法</title>
+  </head>
+  <body onload="load()">
+    <div class="menu">
+      <div class="menuitem"><a href="/">案内</a></div>
+      <div class="menuitem"><a href="/introduce/">導入方法</a></div>
+      <hr />
+    </div>
+    <div class="menuspace"></div>
+    <h1>導入方法</h1>
+    <h2>・ブラウザから起動する場合</h2>
+    <p>下のボタンを押し、ブックマークに登録してから起動してください。</p>
+    <button onclick="copy()">コピー</button><br />
+    <p id="copyok" style="display: none">✅ コピー完了</p>
+    <h2>・専用ブラウザを使用する場合</h2>
+    <div id="addonapp"><p>確認中</p></div>
+  </body>
+</html>
