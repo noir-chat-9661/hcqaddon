@@ -1,0 +1,81 @@
+[
+	{
+		"name": "メインアドオン",
+		"n": 1,
+		"id": "main",
+		"input": null,
+		"beta": false
+	},
+	{
+		"name": "複数行チャット送信アドオン",
+		"n": 0,
+		"id": "multilinechat",
+		"input": null,
+		"beta": false
+	},
+	{
+		"name": "チャット表示上限変更アドオン",
+		"n": 2,
+		"id": "chatmaxup",
+		"input": [
+			{
+				"label": "全体/エリアチャット",
+				"data": {
+					"id": "areamessagelimit",
+					"type": "number",
+					"min": 0,
+					"value": 80
+				}
+			},
+			{
+				"label": "PTチャット",
+				"data": {
+					"id": "partymessagelimit",
+					"type": "number",
+					"min": 0,
+					"value": 80
+				}
+			},
+			{
+				"label": "ギルドチャット",
+				"data": {
+					"id": "guildmessagelimit",
+					"type": "number",
+					"min": 0,
+					"value": 80
+				}
+			},
+			{
+				"label": "個人チャット",
+				"data": {
+					"id": "directmessagelimit",
+					"type": "number",
+					"min": 0,
+					"value": 80
+				}
+			}
+		],
+		"beta": false
+	},
+	{
+		"name": "ステータス別枠表示アドオン",
+		"n": 3,
+		"id": "displaystatus",
+		"input": null,
+		"beta": false
+	},
+	{
+		"name": "拡張プリセットアドオン",
+		"n": 4,
+		"id": "morepresets",
+		"input": null,
+		"beta": false
+	},
+	{
+		"name": "拡張フィルターアドオン",
+		"n": 5,
+		"id": "morefilter",
+		"input": null,
+		"beta": false
+	}
+]

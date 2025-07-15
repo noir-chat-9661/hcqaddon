@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap");
+
+html {
+  background-color: #226688;
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+}
+
+hr {
+  border: none;
+  border-top: 3px solid #333333;
+  color: #333333;
+  overflow: visible;
+  text-align: center;
+  height: 3px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  background-color: #ffff5555;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+a:focus {
+  background-color: #ffffff55;
+}
+
+a.download {
+  font-size: 1.5rem;
+  background-color: #ff555555;
+}
+a.link {
+  background: unset;
+  text-decoration: underline;
+  text-decoration-color: #ffff55;
+}
+a.link:focus {
+  background: unset;
+  text-decoration: underline;
+  text-decoration-color: #999955;
+}
+
+h1 {
+  color: #bbffff;
+  background-color: #ffffff33;
+  border-radius: 30px;
+  width: min(90vw, 750px);
+  margin: 20px auto 10px;
+  padding: 10px;
+  word-break: keep-all;
+}
+
+h2 {
+  color: white;
+}
+
+h2.first {
+  background-color: #33ee7730;
+  border: 2px #33ff99 solid;
+  width: min(85vw, 600px);
+  margin: 10px auto;
+  padding: 10px;
+}
+
+h2.second {
+  text-decoration: underline;
+  text-decoration-color: #ff2200;
+  width: min(75vw, 550px);
+  margin: 10px auto;
+  padding: 10px;
+}
+
+p {
+  color: white;
+  font-size: 1.2rem;
+}
+
+ul {
+  color: white;
+  text-align: center;
+  list-style-position: inside;
+}
+
+.menu {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  padding: auto;
+  transform: translate(-50%, 0);
+  background-color: #226688;
+  width: 100vw;
+  height: 50px;
+  word-break: keep-all;
+}
+
+.menuitem {
+  display: inline-block;
+  margin: 5px 5px auto;
+  padding: 5px 5vw;
+}
+
+.menuspace {
+  height: 50px;
+}
+
+small {
+  font-family: serif;
+  color: white;
+  margin: 5px;
+  display: block;
+}
+
+img {
+  width: min(75vw, 540px);
+}
+img#icon {
+  width: 256px;
+}
+
+button {
+  font-size: 1.5rem
+}
