@@ -1,5 +1,5 @@
 (function () {
-	const version = "5.7.0";
+	const version = "5.7.1";
 	const isMaintainance = false;
 	if (this.addonApp) {
 		if (isMaintainance) {
@@ -999,47 +999,62 @@
 	let weaponshow = true;
 	let stoneshow = true;
 	let rentalshow = true;
+	let kaishu = false;
 
 	this.ItemWindow = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = true;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_normal{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowGousei = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_gousei{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowEnchant = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_enchant{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowOPKaizyo = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_opkaizyo{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowKazi = () => {
 		weaponshow = true;
 		stoneshow = false;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_kazi{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowKaizou = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_kaizou{display:block;}"), ItemLayer();
+	};
+	this.ItemWindowKaishu = () => {
+		weaponshow = true;
+		stoneshow = true;
+		rentalshow = false;
+		kaishu = true;
+		$("#itemuistyle").text(".itemui_kaishu{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowUtinaosi = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
+		kaishu = false;
 		$("#itemuistyle").text(".itemui_utinaosi{display:block;}"), ItemLayer();
 	};
 
@@ -1078,7 +1093,6 @@
 				slot3,
 				okini,
 				kaizou,
-				utime,
 			} = weapon;
 			let typeclass = type == 1 ? "typebugu" : "typegoseki";
 			const name = ItemName(item);
@@ -1095,6 +1109,7 @@
 			tec = Number(tec) - 100;
 			plus_tec = Number(plus_tec);
 			kaizou = Number(kaizou);
+			if (kaishu && kaizou == 0) continue;
 			rental = Number(rental);
 			if (rental && !rentalshow) continue;
 			const plussum = plus_pow + plus_def + plus_tec;
@@ -1209,7 +1224,7 @@
 					'</span></div><div class="itemui_normal" onclick="event.stopPropagation();">' +
 					$soubisss +
 					$bunkaisss +
-					'</div><div class="itemui_gousei"><button onclick="WeaponGousei1(this)">合成ベースにする</button><button onclick="WeaponGousei2(this)">合成素材にする</button></div><div class="itemui_enchant"><button onclick="WeaponEnchant(this)">錬成する</button></div><div class="itemui_opkaizyo"><button onclick="WeaponOPKaizyo(this)">オプション解除</button></div><div class="itemui_kaizou"><button onclick="WeaponKaizou(this)">改造する</button></div><div class="itemui_utinaosi"><button onclick="WeaponUtinaosi(this)">打ち直し</button></div><div class="itemui_kazi">' +
+					'</div><div class="itemui_gousei"><button onclick="WeaponGousei1(this)">合成ベースにする</button><button onclick="WeaponGousei2(this)">合成素材にする</button></div><div class="itemui_enchant"><button onclick="WeaponEnchant(this)">錬成する</button></div><div class="itemui_opkaizyo"><button onclick="WeaponOPKaizyo(this)">オプション解除</button></div><div class="itemui_kaizou"><button onclick="WeaponKaizou(this)">改造する</button></div><div class="itemui_kaishu"><button onclick="WeaponKaishu(this)">魂回収する</button></div><div class="itemui_utinaosi"><button onclick="WeaponUtinaosi(this)">打ち直し</button></div><div class="itemui_kazi">' +
 					$kazisss +
 					'</div></div><span style="display:none" class="data_itemid">' +
 					itemid +
@@ -1242,7 +1257,7 @@
 					$bunkaisss +
 					'</div><span style="display:none" class="data_itemid">' +
 					itemid +
-					'</span><div class="itemui_gousei"><button onclick="WeaponGousei1(this)">合成ベースにする</button><button onclick="WeaponGousei2(this)">合成素材にする</button></div><div class="itemui_enchant"><button onclick="WeaponEnchant(this)">錬成する</button></div><div class="itemui_opkaizyo"><button onclick="WeaponOPKaizyo(this)">オプション解除</button></div><div class="itemui_kaizou"><button onclick="WeaponKaizou(this)">改造する</button></div><div class="itemui_utinaosi"><button onclick="WeaponUtinaosi(this)">打ち直し</button></div><div class="itemui_kazi">' +
+					'</span><div class="itemui_gousei"><button onclick="WeaponGousei1(this)">合成ベースにする</button><button onclick="WeaponGousei2(this)">合成素材にする</button></div><div class="itemui_enchant"><button onclick="WeaponEnchant(this)">錬成する</button></div><div class="itemui_opkaizyo"><button onclick="WeaponOPKaizyo(this)">オプション解除</button></div><div class="itemui_kaizou"><button onclick="WeaponKaizou(this)">改造する</button></div><div class="itemui_kaishu"><button onclick="WeaponKaishu(this)">魂回収する</button></div><div class="itemui_utinaosi"><button onclick="WeaponUtinaosi(this)">打ち直し</button></div><div class="itemui_kazi">' +
 					$kazisss +
 					"</div></div>";
 		}

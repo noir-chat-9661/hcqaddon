@@ -16,18 +16,17 @@ function App() {
 		const setLinks = async () => {
 			const data = await fetch("https://api.github.com/repos/noir-chat-9661/himaque-application/releases/latest").then(res => res.json());
 
-			const userAgent = window.navigator.userAgent;
-			const platform = window.navigator.platform;
+			const userAgent = window.navigator.userAgent.toLowerCase();
 
-			if (userAgent.includes('Win') || platform.includes('Win')) {
+			if (userAgent.includes('windows nt')) {
 				setIsPC(true);
 				setLink(data.assets.find(asset => asset.name.match(/\.exe$/)).browser_download_url);
-				setDescription("Windows 10/11 64bit");
-			} else if (userAgent.includes('Mac') || platform.includes('Mac')) {
+				setDescription("Windows 10/11");
+			} else if ((userAgent.includes('mac os x') || userAgent.includes('macintosh')) && !userAgent.includes('iphone') && !userAgent.includes('ipad')) {
 				setIsPC(true);
 				setLink(data.assets.find(asset => asset.name.match(/\.dmg$/)).browser_download_url);
 				setDescription("macOS 10.15 Catalina 以降");
-			} else if (userAgent.includes('Linux') || platform.includes('Linux')) {
+			} else if (userAgent.includes('linux')) {
 				setIsPC(true);
 				setLink(data.assets.find(asset => asset.name.match(/\.AppImage$/)).browser_download_url);
 				setDescription("Linux 64bit");
@@ -37,7 +36,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className="flex items-center justify-center h-screen bg-cyan-600">
+		<div className="flex items-center justify-center h-dvh bg-cyan-600">
 			<h1 className="absolute top-4 text-3xl font-bold text-white">
 				ヒマクエ アドオンページ
 			</h1>
@@ -50,7 +49,7 @@ function App() {
 			{
 				curerntTab === "content"
 				? (
-					<Card className="absolute top-35 w-7/8 bg-blue-50 shadow-lg">
+					<Card className="absolute top-35 w-7/8 max-h-7/10 overflow-y-auto bg-blue-50 shadow-lg">
 						<CardHeader className="text-center">
 							<h2 className="text-2xl font-bold">主要機能</h2>
 						</CardHeader>
@@ -66,7 +65,7 @@ function App() {
 				)
 				: curerntTab === "install"
 				? (
-					<Card className="absolute top-35 w-7/8 bg-blue-50 shadow-lg">
+					<Card className="absolute top-35 w-7/8 max-h-7/10 overflow-y-auto bg-blue-50 shadow-lg">
 						<CardHeader className="text-center">
 							<h2 className="text-2xl font-bold">導入方法</h2>
 						</CardHeader>
@@ -105,6 +104,7 @@ function App() {
 											📥 ダウンロード
 										</Button>
 										<p className="text-s text-gray-500">{description}</p>
+										<p className="text-gray-700">※その他の環境(32bit等)は<a href="https://github.com/noir-chat-9661/himaque-application/releases/latest/" target="_blank">GitHub</a>からダウンロードしてください。</p>
 									</>
 									: <></>
 							}
