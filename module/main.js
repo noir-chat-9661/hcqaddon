@@ -32,8 +32,7 @@
 			$(`#${addonWindowId} .sourcespace:eq(0)`).html(
 				`${this?.isBeta ? "【β版】" : ""}${
 					this.addonVersion ? "更新" : "起動"
-				}しました。` +
-					`<br /><small>迫真広告支援スペース(広告)</small><br />${AdRectangle()}<br />${AdBanner()}`
+				}しました。`
 			);
 			this.addonVersion = version;
 		}
@@ -86,8 +85,6 @@
 
 	$("#kariquiz").css({ top: "44px", height: "calc(100% - 44px)" });
 
-	//SceneMyHouse
-	//_0x3fdf()[1038] = "<img src='picts/scene_myroom.png' class='scenehaikeiimg' /> \t\t<div class='uegamen'>\t \t \t<div style='position:absolute;top:10%;bottom:3%;left:5%;right:5%;background-color:#FFFFFF;overflow:hidden;'>\t\t \t \t<div class='myroom_supportdiv'>\t\t \t \t\t<div style='font-size:11px'>SUPPORT CHARACTOR</div>\t\t \t \t\t<div class='supportdeletebtn' onclick='SupportPetDelete(1)'>×</div>\t\t \t \t\t<div class='supportdeletebtn' onclick='SupportPetDelete(2)'>×</div>\t\t \t \t\t<div class='supportdeletebtn' onclick='SupportPetDelete(3)'>×</div>\t\t \t \t\t<div style='clear:both'></div>\t\t \t \t\t<div id='supportpetdiv1' class='supportpetdiv'>取得中</div>\t\t \t \t\t<div id='supportpetdiv2' class='supportpetdiv'></div>\t\t \t \t\t<div id='supportpetdiv3' class='supportpetdiv'></div>\t\t \t \t\t<div style='clear:both'></div>\t\t \t \t\t<button onclick='SupportPetChange(1)' class='supportchengebtn'>変更</button>\t\t \t \t\t<button onclick='SupportPetChange(2)' class='supportchengebtn'>変更</button>\t\t \t \t\t<button onclick='SupportPetChange(3)' class='supportchengebtn'>変更</button>\t\t \t \t</div>\t\t \t \t<div style='clear:both'>[<small>友P</small> <b class='astyle' id='tomop' onclick='SupportLogMore()'>?</b>/<small>1000</small>]</div>\t \t \t\t<div id='supportscorespace'>取得中...</div>\t \t \t</div>\t \t \t<div class='scenetitle'>自分の家</div>\t \t</div> \t\t<div class='sitagamen' style='background-color:transparent'> \t\t\t<button onclick='PetStatusEntry()' class='halfbtn'>ステータス (extend)</button> \t\t\t<button onclick='ItemWindow()' class='halfbtn'>アイテムBOX</button> \t\t\t<button onclick='SceneCharactorChange()' class='halfbtn'>キャラクター変更</button> \t\t\t<button onclick='PetNameDiv()' class='halfbtn'>キャラの名前変更</button> \t\t\t<button onclick='UserWindow(";
 	$("#areachat .c_formdiv:eq(0)").html(
 		"<nobr>" +
 			$("#areachat .c_formdiv:eq(0)").html().split(/\t+/).join(" ") +
@@ -1052,7 +1049,7 @@
 	};
 	this.ItemWindowUtinaosi = () => {
 		weaponshow = true;
-		stoneshow = true;
+		stoneshow = false;
 		rentalshow = false;
 		kaishu = false;
 		$("#itemuistyle").text(".itemui_utinaosi{display:block;}"), ItemLayer();
