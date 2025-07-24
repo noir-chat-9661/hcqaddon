@@ -25,9 +25,8 @@
 			$("#menu_help").show();
 		}
 	};
-	const wazadata = await fetch(
-		"https://pjeita.top/hcq/chara_calc/data/wazadata.json"
-	).then((n) => n.json());
+	// 鯖移転したので該当ファイルなし
+	const wazadata = [];
 	const wazapoints = [
 		[0, 1, 3, 6, 10, 15],
 		[0, 2, 6, 12, 20, 30],
@@ -2041,6 +2040,7 @@
 		let f = [];
 		switch (type) {
 			case 0:
+				if (!globalThis.isBeta) return olert("不具合多発のため準備中です");
 				dom += `<style>.domspace {margin-bottom: 15%;}.domspace select{appearance:none;color:#000000;padding: 5px;background-color:#ffffff;border-radius:10px;border:0.5px black solid;}.domspace .option{font-size: 0.75rem;}.layer_tools table td {padding: 1.5px;border: 0.5px #000000 solid;border-collapse: collapse;}.layer_tools .domspace table{border: none;}.layer_tools .domspace td{border: none;}</style>`;
 				dom += `<table style="height: 5%;width:90%;border:1px #000000 solid; border-collapse: collapse;margin-bottom:10px;"><tr><td>戦</td><td>魔</td><td>僧</td><td>忍</td><td>メ</td><td>騎</td><td>召</td><td>計</td></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr></table><div class="domspace"></div>`;
 				$("#layerroot").append(
@@ -2076,7 +2076,7 @@
 					$("#layerroot .domspace iframe").each((i, e) => {
 						e.src = "";
 						setTimeout(
-							() => (e.src = "./AdRectangle_nin.html"),
+							() => (e.src = "./AdRectangle_imo.html"),
 							1500 + i * 500
 						);
 					});

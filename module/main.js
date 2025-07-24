@@ -996,62 +996,62 @@
 	let weaponshow = true;
 	let stoneshow = true;
 	let rentalshow = true;
-	let kaishu = false;
+	let mode = "";
 
 	this.ItemWindow = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = true;
-		kaishu = false;
+		mode = "normal";
 		$("#itemuistyle").text(".itemui_normal{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowGousei = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
-		kaishu = false;
+		mode = "gousei";
 		$("#itemuistyle").text(".itemui_gousei{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowEnchant = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
-		kaishu = false;
+		mode = "enchant";
 		$("#itemuistyle").text(".itemui_enchant{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowOPKaizyo = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
-		kaishu = false;
+		mode = "opkaizyo";
 		$("#itemuistyle").text(".itemui_opkaizyo{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowKazi = () => {
 		weaponshow = true;
 		stoneshow = false;
 		rentalshow = false;
-		kaishu = false;
+		mode = "kazi";
 		$("#itemuistyle").text(".itemui_kazi{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowKaizou = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
-		kaishu = false;
+		mode = "kaizou";
 		$("#itemuistyle").text(".itemui_kaizou{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowKaishu = () => {
 		weaponshow = true;
 		stoneshow = true;
 		rentalshow = false;
-		kaishu = true;
+		mode = "kaishu";
 		$("#itemuistyle").text(".itemui_kaishu{display:block;}"), ItemLayer();
 	};
 	this.ItemWindowUtinaosi = () => {
 		weaponshow = true;
 		stoneshow = false;
 		rentalshow = false;
-		kaishu = false;
+		mode = "utinaosi";
 		$("#itemuistyle").text(".itemui_utinaosi{display:block;}"), ItemLayer();
 	};
 
@@ -1106,7 +1106,11 @@
 			tec = Number(tec) - 100;
 			plus_tec = Number(plus_tec);
 			kaizou = Number(kaizou);
-			if (kaishu && kaizou == 0) continue;
+			if (mode == "kaishu" && kaizou == 0) continue;
+			if (mode == "kazi" && (plus_pow + plus_def + plus_tec) == 99) continue;
+			if (mode == "enchant" && slot1 != 0 && slot2 != 0 && slot3 != 0) continue;
+			if (mode == "opkaizyo" && slot1 == 0 && slot2 == 0 && slot3 == 0) continue;
+			if (mode == "utinaosi" && !plus_pow && !plus_def && !plus_tec) continue;
 			rental = Number(rental);
 			if (rental && !rentalshow) continue;
 			const plussum = plus_pow + plus_def + plus_tec;
@@ -1333,6 +1337,32 @@
 
 	//不具合対応パッチ
 	const userCache = {};
+	this.WeaponOPKaizyo = (dom) => {
+		$("#itemwindow").remove();
+		const itemid = Number($(dom).closest(".weaponul").find(".data_itemid").text());
+		ajax({
+			type: "POST",
+			url: "item_OPKaizyoSelect.php",
+			data: { marumie: SID, seskey, itemid },
+			success: function (response) {
+				if (response.error != 0x1) return alert("サーバエラ-7231");
+				const weapon = weapondata.find(n => n.itemid == itemid);
+				$("#opkaizyo_source")
+					.html(response.source)
+					.find(".itemmei")
+					.text(ItemName(weapon.item))
+					.parents("#opkaizyo_source")
+					.find(".opkaizyo_optiongyou")
+					.each((i, el) => {
+						const option = weapon[`slot${i + 1}`];
+						$(el).html(`<label style="padding: 3px; display: block; width: stretch;"><input type="radio" class="opkaizyo_radio" name="radioopkaizyo01" value="${i + 1}" ${option == 0 ? "disabled" : ""} /><span style="margin-left: 5px;${option == 0 ? " color: #000;" : ""}" class="optionmei">${option == 0 ? "選択不可(opなし)" : OptionName(option)}</span></label>`);
+					});
+			},
+			error: function () {
+				alert("なにかしらの不具合7231");
+			},
+		});
+	}
 	this.getUserIp = async (tuid) => {
 		if (userCache[tuid]) return userCache[tuid];
 		const { remote } = await fetch(
